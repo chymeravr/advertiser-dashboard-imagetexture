@@ -21,4 +21,5 @@ public class PublisherAdAPIController {
 		AdResourceData adResourceData = new AdResourceData(resourceURL, resourceMetadata, resourceErrorCode);
 		return adResourceData;
 	}
+	
 }
