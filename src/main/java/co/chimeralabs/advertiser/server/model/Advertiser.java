@@ -34,6 +34,10 @@ public class Advertiser implements Serializable{
 		return advertiserId;
 	}
 
+	public void setAdvertiserId(Long advertiserId) {
+		this.advertiserId = advertiserId;
+	}
+
 	public List<Campaign> getCampaigns() {
 		return campaigns;
 	}

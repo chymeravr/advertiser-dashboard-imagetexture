@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import co.chimeralabs.advertiser.server.model.Advertiser;
 import co.chimeralabs.advertiser.server.model.SecurityGroup;
 import co.chimeralabs.advertiser.server.model.UserLogin;
-import co.chimeralabs.advertiser.server.repository.AdvertiserRepository;
 import co.chimeralabs.advertiser.server.repository.SecurityGroupRepository;
 import co.chimeralabs.advertiser.server.repository.UserLoginRepository;
 
@@ -19,7 +18,7 @@ public class UserLoginAndRegistrationServiceImpl implements UserLoginAndRegistra
 	UserLoginRepository userLoginRepository;
 	
 	@Autowired
-	AdvertiserRepository advertiserRepository;
+	AdvertiserService advertiserService;
 	
 	@Autowired
 	SecurityGroupRepository securityGroupRepository;
@@ -28,7 +27,7 @@ public class UserLoginAndRegistrationServiceImpl implements UserLoginAndRegistra
 	@Transactional
 	public UserLogin registerUser(UserLogin userLogin) {
 		Advertiser advertiser = new Advertiser();
-		advertiserRepository.save(advertiser);
+		advertiserService.saveAdvertiser(advertiser);
 		userLogin.setAdvertiser(advertiser);
 		SecurityGroup securityGroup = securityGroupRepository.findByName("advertiser");
 		userLogin.addSecurityGroup(securityGroup);

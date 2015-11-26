@@ -3,20 +3,20 @@
 <tiles:insertDefinition name="advertiser_dashboard">
 	<tiles:putAttribute name="sidebar">
 		<div id="sidebar-wrapper">
-			<div class="list-heading">All Campaigns</div>
+			<div id="allCampaigns" class="list-heading pointer-on-hover">All Campaigns</div>
 			<ul class="sidebar-nav">
-				<li class="sidebar-brand"><a href="#">Home</a></li>
-				<li><a href="#">Another link</a></li>
-				<li><a href="#">Next link</a></li>
-				<li><a href="#">Last link</a></li>
+				<c:forEach var="campaign" items="${campaignTree}">
+					<li class="sidebar pointer-on-hover" id="campaign_${campaign.campaignId}">${campaign.name}</li>
+				</c:forEach>
+<!-- 				<li class="sidebar-brand sidebar"><a href="#">Home</a></li> -->
 			</ul>
 		</div>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="topbar">
 		<ul id="topbar" class="nav nav-tabs">
-			<li class="active"><a href="#">Campaign</a></li>
-			<li><a href="#">Ad Group</a></li>
-			<li><a href="#">Ad</a></li>
+			<li id="campaign" class="active topbar"><a href="#">Campaign</a></li>
+			<li id="adgroup" class="topbar"><a href="#">Ad Group</a></li>
+			<li id="ad" class="topbar"><a href="#">Ad</a></li>
 		</ul>
 	</tiles:putAttribute>
 	<tiles:putAttribute name="maincontent">
@@ -27,38 +27,42 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Email</th>
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Email</th>
+						<th class="campaign">Campaign</th>
+						<th class="budget">Budget</th>
+						<th class="impr">Impr</th>
+						<th class="interactions">Interactions</th>
+						<th class="interaction-rate">Interaction rate</th>
+						<th class="avg-cost">Avg. Cost</th>
+						<th class="cost">Cost</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>John</td>
-						<td>Doe</td>
-						<td>john@example.com</td>
-						<td>John</td>
-						<td>Doe</td>
-						<td>john@example.com</td>
+						<td class="campaign">Campaign</td>
+						<td class="budget">100</td>
+						<td class="impr">1000</td>
+						<td class="interactions">0.6</td>
+						<td class="interaction-rate">13</td>
+						<td class="avg-cost">13</td>
+						<td class="cost">300</td>
 					</tr>
 					<tr>
-						<td>Mary</td>
-						<td>Moe</td>
-						<td>mary@example.com</td>
-						<td>Mary</td>
-						<td>Moe</td>
-						<td>mary@example.com</td>
+						<td class="campaign">Campaign</td>
+						<td class="budget">100</td>
+						<td class="impr">1000</td>
+						<td class="interactions">0.6</td>
+						<td class="interaction-rate">13</td>
+						<td class="avg-cost">13</td>
+						<td class="cost">300</td>
 					</tr>
 					<tr>
-						<td>July</td>
-						<td>Dooley</td>
-						<td>july@example.com</td>
-						<td>July</td>
-						<td>Dooley</td>
-						<td>july@example.com</td>
+						<td class="campaign">Campaign</td>
+						<td class="budget">100</td>
+						<td class="impr">1000</td>
+						<td class="interactions">0.6</td>
+						<td class="interaction-rate">13</td>
+						<td class="avg-cost">13</td>
+						<td class="cost">300</td>
 					</tr>
 				</tbody>
 			</table>
@@ -68,10 +72,12 @@
 	<tiles:putAttribute name="js">
 		<script type="text/javascript">
 			var sidebarState = "campaign";
-			var topBarState = "campaign";
+			var topbarState = "campaign";
+			var selectedCampaignId;
+			var selectedAdGroupId;
 			var wrapperPadding = $("div#wrapper").css("padding-left");
 			var advertiserId = "3234";
-			var actionUrl = "/advertiser/dashboard/cm/ui/_ac/";
+			var actionUrl = "/advertiser/dashboard/cm/ui/_ac";
 			$(document).ready(function(){
 				$("#addButton").click(function(event){
 					var url = "";
@@ -85,8 +91,8 @@
 					function fail(){
 						
 					}*/
-					if(topBarState === "campaign"){
-						var url = actionUrl + "gacf";
+					if(topbarState === "campaign"){
+						var url = actionUrl + "/gacf";
 						window.location.href = url;
 						/*$.ajax({
 							url: url,
@@ -95,11 +101,45 @@
 							method: "GET"
 						});*/
 					}
-					else if(topBarState === "adgroup"){
-						
+					else if(topbarState === "adgroup"){
+						var url = actionUrl + "/gagf";
+						if(sidebarState === "adgroup")
+							url += "?cid="+selectedCampaignId;
+						window.location.href = url;
 					}
 					else if(topbarState === "ad"){
 					}
+				});
+				$("li.sidebar").click(function(event){
+					$("li.topbar").removeClass("active");
+					$("li#campaign").hide();
+					$("li#adgroup").addClass("active");
+					sidebarState = "adgroup";
+					topbarState = "adgroup";
+					$("#addButton").html("+ AdGroup");
+					selectedCampaignId = $(this).attr("id").split("_")[1];
+				});
+				$("div#allCampaigns").click(function(event){
+					sidebarState = "campaign";
+					$("li#campaign").show();
+				})
+				$("li#campaign").click(function(event){
+					$("li.topbar").removeClass("active");
+					$(this).addClass("active");
+					topbarState = "campaign";
+					$("#addButton").html("+ Campaign");
+				});
+				$("li#adgroup").click(function(event){
+					$("li.topbar").removeClass("active");
+					$(this).addClass("active");
+					topbarState = "adgroup";
+					$("#addButton").html("+ AdGroup");
+				});
+				$("li#ad").click(function(event){
+					$("li.topbar").removeClass("active");
+					$(this).addClass("active");
+					topbarState = "ad";
+					$("#addButton").html("+ Ad");
 				});
 			});
 		</script>

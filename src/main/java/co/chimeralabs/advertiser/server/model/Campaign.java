@@ -42,6 +42,10 @@ public class Campaign {
 	public Long getCampaignId() {
 		return campaignId;
 	}
+	
+	public void setCampaignId(Long campaignId){
+		this.campaignId = campaignId;
+	}
 
 	public Advertiser getAdvertiser() {
 		return advertiser;

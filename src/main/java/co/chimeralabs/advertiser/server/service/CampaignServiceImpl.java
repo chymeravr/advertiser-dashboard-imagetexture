@@ -1,5 +1,6 @@
 package co.chimeralabs.advertiser.server.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.chimeralabs.advertiser.server.model.AdGroup;
+import co.chimeralabs.advertiser.server.model.Advertiser;
 import co.chimeralabs.advertiser.server.model.Campaign;
 import co.chimeralabs.advertiser.server.repository.CampaignRepository;
 
@@ -18,12 +21,44 @@ public class CampaignServiceImpl implements CampaignService{
 	
 	@Autowired
 	CampaignRepository campaignRepository;
+
+	@Autowired
+	AdvertiserService advertiserService;
 	
 	@Override
 	@Transactional
-	public Campaign saveNewCampaign(Campaign campaign) {
+	public Campaign saveCampaign(Campaign campaign) {
 		// TODO Auto-generated method stub
 		return campaignRepository.save(campaign);
+	}
+
+	@Override
+	@Transactional
+	public List<Campaign> getCampaigns(Long advertiserId) {
+		return campaignRepository.getCampaignsByAdvertiserId(advertiserId);
+	}
+
+	@Override
+	@Transactional
+	public List<Campaign> getCampaignTree(Long advertiserId) {
+		List<Campaign> campaigns = campaignRepository.getCampaignsByAdvertiserId(advertiserId);
+		for (Campaign campaign : campaigns) {
+			List<AdGroup> adGroups = campaign.getAdGroups();
+		}
+		return campaigns;
+	}
+
+	@Override
+	@Transactional
+	public Campaign saveCampaign(Campaign campaign, Long advertiserId) {
+		Advertiser advertiser = advertiserService.getAdvertiser(advertiserId);
+		campaign.setAdvertiser(advertiser);
+		return campaignRepository.save(campaign);
+	}
+
+	@Override
+	public Campaign getCampaign(Long campaignId) {
+		return campaignRepository.getOne(campaignId);
 	}
 	
 }

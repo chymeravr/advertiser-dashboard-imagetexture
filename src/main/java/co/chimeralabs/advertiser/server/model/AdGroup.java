@@ -1,8 +1,10 @@
 package co.chimeralabs.advertiser.server.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="ad_group")
-public class AdGroup {
+public class AdGroup implements Serializable{
 	private static final long serialVersionUID = -5498033954327208834L;
 	
 	@Id
@@ -25,6 +27,8 @@ public class AdGroup {
 	private Long adGroupId;
 	
 	private String name;
+	
+	@Column(name="bid")
 	private Double bid;
 
 	/** Todo
@@ -65,6 +69,14 @@ public class AdGroup {
 
 	public void setAdvertisements(List<Advertisement> advertisements) {
 		this.advertisements = advertisements;
+	}
+
+	public Double getBid() {
+		return bid;
+	}
+
+	public void setBid(Double bid) {
+		this.bid = bid;
 	}
 	
 }

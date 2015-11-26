@@ -47,9 +47,9 @@
 						<form class="form-signin" role="form" id="login_form"
 							action="<c:url value='/j_spring_security_check' />" method="post"
 							accept-charset="UTF-8">
-							<label for="phonenumber">UserId</label> <br /> <input
+							<label for="username">Username</label> <br /> <input
 								class="form-control" id="j_username" name="j_username"
-								placeholder="Phone number" type="tel" required autofocus /> <br />
+								placeholder="Username" type="tel" required autofocus /> <br />
 	
 							<label for="password">Password</label> <input class="form-control"
 								id="j_password" type="password" name="j_password"

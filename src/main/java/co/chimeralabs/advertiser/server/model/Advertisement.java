@@ -25,6 +25,10 @@ public class Advertisement {
 		return advertisementId;
 	}
 
+	public void setAdvertisementId(Long advertisementId) {
+		this.advertisementId = advertisementId;
+	}
+
 	public AdGroup getAdGroup() {
 		return adGroup;
 	}

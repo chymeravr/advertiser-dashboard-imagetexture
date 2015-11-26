@@ -90,6 +90,11 @@ hr.medium{
 label{
 	font-weight: normal;
 }
+
+.pointer-on-hover:hover{
+	cursor: pointer;
+}
+
 @media ( max-width :767px) {
 	#wrapper {
 		padding-left: 0;
