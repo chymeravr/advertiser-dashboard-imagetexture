@@ -17,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.chimeralabs.advertiser.server.formDTO.ImageAdUploadFormDTO;
 import co.chimeralabs.advertiser.server.model.AdGroup;
 import co.chimeralabs.advertiser.server.model.AdType;
 import co.chimeralabs.advertiser.server.model.Advertiser;
 import co.chimeralabs.advertiser.server.model.Campaign;
+import co.chimeralabs.advertiser.server.model.TextureImageFormat;
 import co.chimeralabs.advertiser.server.model.UserPrincipal;
+import co.chimeralabs.advertiser.server.repository.TextureImageFormatRepository;
 import co.chimeralabs.advertiser.server.service.AdGroupService;
+import co.chimeralabs.advertiser.server.service.AdService;
 import co.chimeralabs.advertiser.server.service.CampaignService;
 import co.chimeralabs.advertiser.server.util.TypeConversion;
 
@@ -35,6 +39,12 @@ public class AdvertiserDashboard {
 	
 	@Autowired
 	AdGroupService adGroupService;
+	
+	@Autowired
+	AdService adService;
+	
+	@Autowired
+	TextureImageFormatRepository textureImageFormatRepository;
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String homeMethod(Model m){
@@ -51,7 +61,8 @@ public class AdvertiserDashboard {
 		UserPrincipal user = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Long advertiserId = user.getAdvertiserId();
 		if(actionId.equals("gcmt")){//getcampaignMainTemplate
-			m.addAttribute("campaignTree", campaignService.getCampaignTree(advertiserId));
+			List<Campaign> campaignTree = campaignService.getCampaignTree(advertiserId);
+			m.addAttribute("campaignTree", campaignTree);
 			return "jsp/campaignManagementDashboard";
 		}
 		if(actionId.equals("gacf")){//getAddCampaignForm
@@ -59,7 +70,7 @@ public class AdvertiserDashboard {
 			m.addAttribute("adTypeNames", AdType.getEnumNames());
 			return "jsp/addCampaignForm";
 		}
-		if(actionId.equals("gagf")){//getAdGroupForm
+		else if(actionId.equals("gagf")){//getAdGroupForm
 			//m.addAttribute("campaignId", params.get("campaignId"));
 			Long campaignId = null;
 			if(params.get("cid") != null){
@@ -72,6 +83,19 @@ public class AdvertiserDashboard {
 			}
 			m.addAttribute("adGroup", new AdGroup());
 			return "jsp/addAdGroupForm";
+		}
+		else if(actionId.equals("gadf")){
+			Long adGroupId = null;
+			if(params.get("agid") != null){
+				adGroupId = TypeConversion.StringToLong(params.get("agid"));
+				m.addAttribute("adGroupId", adGroupId);
+			}
+			else{
+				//List<AdGroup> adGroups = adGroupService.getAdGroups(campaignId);
+			}
+			List<TextureImageFormat> imageFormats = textureImageFormatRepository.findAll();
+			m.addAttribute("imageFormats", imageFormats);
+			return "jsp/addAdForm";
 		}
 		return "template";
 	}
@@ -103,6 +127,12 @@ public class AdvertiserDashboard {
 	@RequestMapping(value="/dashboard/cm/addAdGroup", method = RequestMethod.POST)
 	public String addAdGroup(@ModelAttribute("adGroup") AdGroup adGroup){
 		adGroup = adGroupService.saveAdGroup(adGroup, adGroup.getCampaign().getCampaignId());
+		return "redirect:/dashboard/cm/ui/_ac/gcmt";
+	}
+	
+	@RequestMapping(value="/dashboard/cm/addAd", method = RequestMethod.POST)
+	public String addAd(@ModelAttribute("imageAdUploadFormDTO") ImageAdUploadFormDTO dto){
+		adService.saveImageTextureAd(dto.getAd(), dto.getFile(), dto.getAd().getAdGroup().getAdGroupId());
 		return "redirect:/dashboard/cm/ui/_ac/gcmt";
 	}
 }

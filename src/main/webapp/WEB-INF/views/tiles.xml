@@ -10,6 +10,7 @@
         <put-attribute name="maincontent" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/jsp/footer.jsp" />
         <put-attribute name="js" value="" />
+        <put-attribute name="css" value="" />
     </definition>
     <definition name="advertiser_anonymous" template="/WEB-INF/views/layout/advertiser_dashboard_layout.jsp">
     	<put-attribute name="header" value="" />

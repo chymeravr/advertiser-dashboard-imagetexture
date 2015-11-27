@@ -14,7 +14,12 @@ import co.chimeralabs.advertiser.server.model.Campaign;
 @Transactional
 public interface CampaignRepository extends JpaRepository<Campaign, Long>{
 	@Query("select c "
-			+ "from Campaign c inner join c.advertiser a "
+			+ "from Campaign c join c.advertiser a "
 			+ "where a.advertiserId=?1")
 	public List<Campaign> getCampaignsByAdvertiserId(Long advertiserId);
+	
+	@Query("select c "
+			+ "from Campaign c join c.advertiser a join fetch c.adGroups "
+			+ "where a.advertiserId=?1")
+	public List<Campaign> getCampaignsByAdvertiserIdWithAdGroupEagerLoad(Long advertiserId);
 }

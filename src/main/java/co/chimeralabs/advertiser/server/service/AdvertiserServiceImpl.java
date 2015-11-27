@@ -1,5 +1,7 @@
 package co.chimeralabs.advertiser.server.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,9 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 	AdvertiserRepository advertiserRepository;
 	
 	@Override
+	@Transactional
 	public Advertiser getAdvertiser(Long advertiserId) {
-		return advertiserRepository.getOne(advertiserId);
+		return advertiserRepository.findOne(advertiserId);
 	}
 
 	@Override

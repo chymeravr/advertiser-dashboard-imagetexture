@@ -23,7 +23,6 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="${static_url}/css/dashboard-main.css" />
-
 <tiles:insertAttribute name="css" ignore="true" />
 <title>ChimeraLabs | Advertiser Dashboard</title>
 

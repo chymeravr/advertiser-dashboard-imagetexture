@@ -7,6 +7,11 @@
 			<ul class="sidebar-nav">
 				<c:forEach var="campaign" items="${campaignTree}">
 					<li class="sidebar pointer-on-hover" id="campaign_${campaign.campaignId}">${campaign.name}</li>
+					<ul class="sidebar-sub-nav">
+						<c:forEach var="adGroup" items="${campaign.adGroups}">
+							<li class="sidebar-sub pointer-on-hover" id="adgroup_${adGroup.adGroupId}">${adGroup.name}</li>
+						</c:forEach>
+					</ul>
 				</c:forEach>
 <!-- 				<li class="sidebar-brand sidebar"><a href="#">Home</a></li> -->
 			</ul>
@@ -68,7 +73,13 @@
 			</table>
 		</div>
 	</tiles:putAttribute>
-	
+	<tiles:putAttribute name="css">
+		<style>
+			ul.sidebar-sub-nav{
+				margin-left: 10px;
+			}
+		</style>
+	</tiles:putAttribute>
 	<tiles:putAttribute name="js">
 		<script type="text/javascript">
 			var sidebarState = "campaign";
@@ -108,6 +119,10 @@
 						window.location.href = url;
 					}
 					else if(topbarState === "ad"){
+						var url = actionUrl + "/gadf";
+						if(sidebarState === "ad")
+							url += "?agid="+selectedAdGroupId;
+						window.location.href = url;
 					}
 				});
 				$("li.sidebar").click(function(event){
@@ -118,6 +133,16 @@
 					topbarState = "adgroup";
 					$("#addButton").html("+ AdGroup");
 					selectedCampaignId = $(this).attr("id").split("_")[1];
+				});
+				$("li.sidebar-sub").click(function(event){
+					$("li.topbar").removeClass("active");
+					$("li#campaign").hide();
+					$("li#adgroup").hide();
+					$("li#ad").addClass("active");
+					sidebarState = "ad";
+					topbarState = "ad";
+					$("#addButton").html("+ Ad");
+					selectedAdGroupId = $(this).attr("id").split("_")[1];
 				});
 				$("div#allCampaigns").click(function(event){
 					sidebarState = "campaign";
