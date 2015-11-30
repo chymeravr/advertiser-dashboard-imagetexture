@@ -9,4 +9,5 @@ public interface TextureImageService {
 	public String saveImage();
 	public Boolean checkImageFormat(MultipartFile imageFile, TextureImageFormat imageFormat);
 	public String getImagePath(String resourceIdentifier);
+	public String getImageFormat();
 }

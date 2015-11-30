@@ -32,6 +32,4 @@ public class AdResourceData {
 	public void setResourceErrorCode(String resourceErrorCode) {
 		this.resourceErrorCode = resourceErrorCode;
 	}
-	
-	
 }

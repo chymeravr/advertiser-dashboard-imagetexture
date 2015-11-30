@@ -101,4 +101,9 @@ public class TextureImageServiceImpl implements TextureImageService{
 	        filename=saverId+"_"+rndchars+"_"+"_"+millis;
 	        return filename;
 	}
+
+	@Override
+	public String getImageFormat() {
+		return this.format;
+	}
 }

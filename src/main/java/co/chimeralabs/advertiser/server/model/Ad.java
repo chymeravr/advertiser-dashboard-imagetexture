@@ -20,6 +20,7 @@ public class Ad {
 	private Integer resolutionWidth;
 	private Integer resolutionHeight;
 	private String adResourceIdentifier;
+	private String adResourceFormat;
 	
 	@ManyToOne
 	@JoinColumn(name="ad_group_id")
@@ -80,6 +81,14 @@ public class Ad {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getAdResourceFormat() {
+		return adResourceFormat;
+	}
+
+	public void setAdResourceFormat(String adResourceFormat) {
+		this.adResourceFormat = adResourceFormat;
 	}
 	
 }

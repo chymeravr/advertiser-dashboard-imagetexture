@@ -1,10 +1,12 @@
 package co.chimeralabs.advertiser.server.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class Campaign {
+public class Campaign implements Serializable{
 	private static final long serialVersionUID = -5498033954327208834L;
 	
 	@Id
@@ -25,7 +27,10 @@ public class Campaign {
 	private Long campaignId;
 	
 	private String name;
+	
+	@Column(name="daily_budget")
 	private Double dailyBudget;
+	
 	private AdType adType;
 	private Timestamp startDate;
 	private Timestamp endDate;

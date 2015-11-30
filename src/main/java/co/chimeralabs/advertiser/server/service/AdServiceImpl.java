@@ -1,5 +1,7 @@
 package co.chimeralabs.advertiser.server.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,7 @@ public class AdServiceImpl implements AdService{
 			if(textureImageService.checkImageFormat(imageFile, new TextureImageFormat(ad.getResolutionWidth(), ad.getResolutionHeight()))){
 				String resourceIdentifier = textureImageService.saveImage();
 				ad.setAdResourceIdentifier(resourceIdentifier);
+				ad.setAdResourceFormat(textureImageService.getImageFormat());
 			}
 		}
 		return adRepository.save(ad);
@@ -54,6 +57,11 @@ public class AdServiceImpl implements AdService{
 	public String getAdUrl(Long adId) {
 		Ad ad = adRepository.findOne(adId);
 		return textureImageService.getImagePath(ad.getAdResourceIdentifier());
+	}
+
+	@Override
+	public List<Ad> getAds() {
+		return adRepository.findAll();
 	}
 
 }
