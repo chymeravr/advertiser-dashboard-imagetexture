@@ -2,5 +2,6 @@
 <root>
 	<image>
 		<textureimageurl>webapps/adnetwork/adresources/textureimages</textureimageurl>
+		<imageresourceurl>http://localhost:8080/adnetwork/adresources/textureimages</imageresourceurl>
 	</image>
 </root>

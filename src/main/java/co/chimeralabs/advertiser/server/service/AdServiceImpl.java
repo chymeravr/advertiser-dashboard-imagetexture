@@ -64,4 +64,9 @@ public class AdServiceImpl implements AdService{
 		return adRepository.findAll();
 	}
 
+	@Override
+	public List<Ad> getAds(Long adGroupId) {
+		return adRepository.getAds(adGroupId);
+	}
+
 }

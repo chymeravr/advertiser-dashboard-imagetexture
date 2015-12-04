@@ -14,7 +14,26 @@
 			</div>
 			<hr class="medium" />
 			<c:choose>
-				<c:when test="${empty adGroupId}">
+				<c:when test="${not empty campaignTree}">
+					<div class="row">
+						<div class="col-md-2 right-align">
+							<label for="adGroup">Select campaign and ad group</label>
+						</div>
+						<div class="col-md-3">
+							<select class="form-control" name="ad.adGroup.adGroupId"
+								id="adgroup">
+								<c:forEach var="campaign" items="${campaignTree}" varStatus="loop">
+									<optgroup label="${campaign.name}">
+										<c:forEach var="adGroup" items="${campaign.adGroups}" >
+											<option value="${adGroup.adGroupId}">${adGroup.name}</option>
+										</c:forEach>
+									</optgroup>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${not empty adGroups}">
 					<div class="row">
 						<div class="col-md-2 right-align">
 							<label for="adGroup">Select Adgroup</label>
@@ -22,8 +41,8 @@
 						<div class="col-md-3">
 							<select class="form-control" name="ad.adGroup.adGroupId"
 								id="adgroup">
-								<c:forEach var="item" items="${adgroups}" varStatus="loop">
-									<option value="${item.adgroupId}">${item.name}</option>
+								<c:forEach var="item" items="${adGroups}" varStatus="loop">
+									<option value="${item.adGroupId}">${item.name}</option>
 								</c:forEach>
 							</select>
 						</div>

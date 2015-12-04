@@ -41,7 +41,7 @@ public class AdGroup implements Serializable{
 	
 	@OneToMany(mappedBy="adGroup", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
 	@Fetch(value=FetchMode.SUBSELECT)
-	private List<Ad> advertisements;
+	private List<Ad> ads;
 	
 	public String getName() {
 		return name;
@@ -63,12 +63,12 @@ public class AdGroup implements Serializable{
 		this.campaign = campaign;
 	}
 
-	public List<Ad> getAdvertisements() {
-		return advertisements;
+	public List<Ad> getAds() {
+		return ads;
 	}
 
-	public void setAdvertisements(List<Ad> advertisements) {
-		this.advertisements = advertisements;
+	public void setAds(List<Ad> advertisements) {
+		this.ads = advertisements;
 	}
 
 	public Double getBid() {

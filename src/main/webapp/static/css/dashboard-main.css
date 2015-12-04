@@ -93,6 +93,7 @@ label{
 
 .pointer-on-hover:hover{
 	cursor: pointer;
+	background-color: rgba(0,0,0,0.05);
 }
 
 @media ( max-width :767px) {

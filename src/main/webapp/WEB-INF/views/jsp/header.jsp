@@ -18,24 +18,30 @@
 		id="example-navbar-collapse">
 
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">iOS</a></li>
-			<li><a href="#">SVN</a></li>
+			<li class="active">
+				<a href="#">Campaign Management</a>
+			</li>
+			<li>
+				<a href="#"> Reports</a>
+			</li>
+<!-- 			<li class="active"><a href="#">iOS</a></li> -->
+<!-- 			<li><a href="#">SVN</a></li> -->
 
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown"> Java <b class="caret"></b>
-			</a>
+<!-- 			<li class="dropdown"><a href="#" class="dropdown-toggle" -->
+<!-- 				data-toggle="dropdown"> Java <b class="caret"></b> -->
+<!-- 			</a> -->
 
-				<ul class="dropdown-menu">
-					<li><a href="#">jmeter</a></li>
-					<li><a href="#">EJB</a></li>
-					<li><a href="#">Jasper Report</a></li>
+<!-- 				<ul class="dropdown-menu"> -->
+<!-- 					<li><a href="#">jmeter</a></li> -->
+<!-- 					<li><a href="#">EJB</a></li> -->
+<!-- 					<li><a href="#">Jasper Report</a></li> -->
 
-					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>
+<!-- 					<li class="divider"></li> -->
+<!-- 					<li><a href="#">Separated link</a></li> -->
 
-					<li class="divider"></li>
-					<li><a href="#">One more separated link</a></li>
-				</ul></li>
+<!-- 					<li class="divider"></li> -->
+<!-- 					<li><a href="#">One more separated link</a></li> -->
+<!-- 				</ul></li> -->
 
 		</ul>
 	</div>

@@ -44,4 +44,16 @@ public class AdGroupServiceImpl implements AdGroupService{
 		return adGroupRepository.getAdGroupsByCampaignId(campaignId);
 	}
 
+	@Override
+	@Transactional
+	public List<AdGroup> getAdGroupsTree(Long campaignId) {
+		List<AdGroup> adGroups = adGroupRepository.getAdGroupsByCampaignId(campaignId);
+		for (AdGroup adGroup : adGroups) {
+			adGroup.getAds().size();
+		}
+		if(adGroups != null && adGroups.size()>0)
+			adGroups.get(0).getCampaign();
+		return adGroups;
+	}
+
 }

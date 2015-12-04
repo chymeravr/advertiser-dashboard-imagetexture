@@ -45,8 +45,10 @@ public class CampaignServiceImpl implements CampaignService{
 		//List<Campaign> campaigns = campaignRepository.getCampaignsByAdvertiserIdWithAdGroupEagerLoad(advertiserId);
 		List<Campaign> campaigns = campaignRepository.getCampaignsByAdvertiserId(advertiserId);
 		for (Campaign campaign : campaigns) {
-			//Hibernate.initialize(campaign.getAdGroups());
-			campaign.getAdGroups().size();
+			List<AdGroup> adGroups = campaign.getAdGroups();
+			for (AdGroup adGroup : adGroups) {
+				adGroup.getAds().size();
+			}
 		}
 		return campaigns;
 	}

@@ -9,4 +9,5 @@ public interface AdGroupService {
 	AdGroup saveAdGroup(AdGroup adGroup, Long campaignId);
 	AdGroup getAdGroup(Long adGroupId);
 	List<AdGroup> getAdGroups(Long campaignId);
+	List<AdGroup> getAdGroupsTree(Long campaignId);
 }

@@ -89,7 +89,7 @@ public class TextureImageServiceImpl implements TextureImageService{
 	}
 	
 	private String getTextureImagePathPrefix(){
-		InputStream inputStream = getClass().getResourceAsStream("/application/AppConstants.xml");
+		InputStream inputStream = getClass().getResourceAsStream("/machine/MachineConstants.xml");
 		String baseDir = RetrieveResources.retrieveResourcesAppConatants(inputStream, "textureimageurl").get(0);
 	    String rootDir = System.getProperty("catalina.home");
 	    return rootDir+File.separator+baseDir;
