@@ -22,4 +22,5 @@ public interface CampaignRepository extends JpaRepository<Campaign, Long>{
 			+ "from Campaign c join c.advertiser a join fetch c.adGroups "
 			+ "where a.advertiserId=?1")
 	public List<Campaign> getCampaignsByAdvertiserIdWithAdGroupEagerLoad(Long advertiserId);
+	
 }

@@ -32,7 +32,7 @@ public class AdServerAPIController {
 	@Autowired
 	AdService adService;
 	
-	@RequestMapping(value={"/publisher/api/loadad", "/"}, method=RequestMethod.GET, headers="Accept=application/json")
+	@RequestMapping(value={"/publisher/api/loadad"}, method=RequestMethod.GET, headers="Accept=application/json")
 	public AdResourceData getAdMetadata(){
 		logger.debug("Inside advertiserserver.publisheradapicontroller.getadmetadata");
 		String resourceURL = "http://www.chimeralabs.co";

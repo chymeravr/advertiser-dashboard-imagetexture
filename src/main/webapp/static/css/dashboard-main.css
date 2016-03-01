@@ -1,3 +1,6 @@
+body {
+	overflow-x: hidden;
+}
 #wrapper {
 	padding-left: 250px;
 	transition: all 0.4s ease 0s;
@@ -94,6 +97,30 @@ label{
 .pointer-on-hover:hover{
 	cursor: pointer;
 	background-color: rgba(0,0,0,0.05);
+}
+
+.table-action-list{
+	padding-left: 0px;
+	margin-bottom: 50px;
+}
+
+.table-action-list .table-action-button{
+	margin-right: 10px;
+	float: left;
+}
+
+.quicknotification{
+	position: fixed;
+    left: 35%;
+    top: 40%;
+    background-color: #ffcccc;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 30%;
+    z-index: 1000;
+    text-align: center;
 }
 
 @media ( max-width :767px) {

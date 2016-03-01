@@ -69,4 +69,13 @@ public class AdServiceImpl implements AdService{
 		return adRepository.getAds(adGroupId);
 	}
 
+	@Override
+	@Transactional
+	public Integer deleteAds(List<Long> ids) {
+		for (Long id : ids) {
+			adRepository.delete(id);
+		}
+		return null;
+	}
+
 }

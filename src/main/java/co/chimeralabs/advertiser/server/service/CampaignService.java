@@ -10,4 +10,5 @@ public interface CampaignService {
 	public Campaign getCampaign(Long campaignId);
 	public List<Campaign> getCampaigns(Long advertiserId);
 	public List<Campaign> getCampaignTree(Long advertiserId);
+	public Integer deleteCampaigns(List<Long> ids);
 }

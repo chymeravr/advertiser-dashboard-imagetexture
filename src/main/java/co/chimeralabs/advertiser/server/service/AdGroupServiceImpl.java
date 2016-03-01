@@ -56,4 +56,13 @@ public class AdGroupServiceImpl implements AdGroupService{
 		return adGroups;
 	}
 
+	@Override
+	@Transactional
+	public Integer deleteAdGroups(List<Long> ids) {
+		for (Long id : ids) {
+			adGroupRepository.delete(id);
+		}
+		return null;
+	}
+
 }

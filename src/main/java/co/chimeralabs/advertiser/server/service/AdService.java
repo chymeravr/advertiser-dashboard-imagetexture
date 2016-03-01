@@ -13,4 +13,5 @@ public interface AdService {
 	public Ad saveImageTextureAd(Ad ad, MultipartFile imageFile, Long adGroupId);
 	public String getAdUrl(Long adId);
 	public List<Ad> getAds();
+	public Integer deleteAds(List<Long> ids);
 }

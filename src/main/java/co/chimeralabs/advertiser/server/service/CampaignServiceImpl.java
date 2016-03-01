@@ -65,5 +65,13 @@ public class CampaignServiceImpl implements CampaignService{
 	public Campaign getCampaign(Long campaignId) {
 		return campaignRepository.getOne(campaignId);
 	}
+
+	@Override
+	public Integer deleteCampaigns(List<Long> ids) {
+		for (Long id : ids) {
+			campaignRepository.delete(id);
+		}
+		return null;
+	}
 	
 }

@@ -10,4 +10,5 @@ public interface AdGroupService {
 	AdGroup getAdGroup(Long adGroupId);
 	List<AdGroup> getAdGroups(Long campaignId);
 	List<AdGroup> getAdGroupsTree(Long campaignId);
+	Integer deleteAdGroups(List<Long> ids);
 }

@@ -16,4 +16,5 @@ public interface AdRepository extends JpaRepository<Ad, Long>{
 	@Query("select a "
 			+ "from Ad a where a.adGroup.adGroupId=?1")
 	List<Ad> getAds(Long adGroupID);
+	
 }

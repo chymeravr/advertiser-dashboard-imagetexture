@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.chimeralabs.advertiser.server.formDTO.AdGroupPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.AdPerformanceDataDTO;
+import co.chimeralabs.advertiser.server.formDTO.CM_DataRowActionDTO;
 import co.chimeralabs.advertiser.server.formDTO.CampaignPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.ImageAdUploadFormDTO;
 import co.chimeralabs.advertiser.server.model.Ad;
@@ -248,6 +250,48 @@ public class AdvertiserDashboard {
 	public String addAd(@ModelAttribute("imageAdUploadFormDTO") ImageAdUploadFormDTO dto){
 		adService.saveImageTextureAd(dto.getAd(), dto.getFile(), dto.getAd().getAdGroup().getAdGroupId());
 		return "redirect:/dashboard/cm/ui/_ac/gcmt";
+	}
+	
+	@RequestMapping(value="/dashboard/cm/rowaction", method = RequestMethod.POST)
+	@ResponseBody
+	public String dataRowAction(@RequestBody CM_DataRowActionDTO data){
+		String returnMessage = ""; //success if everything goes well
+		if(data.getTarget().equals("campaign")){
+			if(data.getAction().equals("delete")){
+				campaignService.deleteCampaigns(data.getIdList());
+				returnMessage = "success";
+			}
+			else if(data.getAction().equals("activate")){
+				
+			}
+			else if(data.getAction().equals("deactivate")){
+				
+			}
+		}
+		else if(data.getTarget().equals("adgroup")){
+			if(data.getAction().equals("delete")){
+				adGroupService.deleteAdGroups(data.getIdList());
+			}
+			else if(data.getAction().equals("activate")){
+				
+			}
+			else if(data.getAction().equals("deactivate")){
+				
+			}
+		}
+		else if(data.getTarget().equals("ad")){
+			if(data.getAction().equals("delete")){
+				adService.deleteAds(data.getIdList());
+				returnMessage = "success";
+			}
+			else if(data.getAction().equals("activate")){
+				
+			}
+			else if(data.getAction().equals("deactivate")){
+				
+			}
+		}
+		return "success";
 	}
 	
 }
