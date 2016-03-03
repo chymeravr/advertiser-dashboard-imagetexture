@@ -51,9 +51,9 @@ public class AdvertiserDashboard {
 	@Autowired
 	TextureImageFormatRepository textureImageFormatRepository;
 	
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String homeMethod(Model m){
-		return "jsp/home";
+		return "redirect:/dashboard/cm/ui/_ac/gcmt";
 	}
 	
 	@RequestMapping(value="/template", method=RequestMethod.GET)
@@ -291,7 +291,7 @@ public class AdvertiserDashboard {
 				
 			}
 		}
-		return "success";
+		return returnMessage;
 	}
 	
 }
