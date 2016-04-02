@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.chimeralabs.advertiser.server.formDTO.AdGroupPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.AdPerformanceDataDTO;
-import co.chimeralabs.advertiser.server.formDTO.CM_DataRowActionDTO;
 import co.chimeralabs.advertiser.server.formDTO.CampaignPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.ImageAdUploadFormDTO;
 import co.chimeralabs.advertiser.server.model.Ad;
@@ -292,6 +293,16 @@ public class AdvertiserDashboard {
 			}
 		}
 		return returnMessage;
+	}
+	
+	@RequestMapping(value="/getipaddress", method=RequestMethod.GET)
+	public String getIPAddress(HttpServletRequest request){
+		return request.getRemoteAddr();
+	}
+	
+	@RequestMapping(value="/getipaddress2", method=RequestMethod.GET)
+	public String getIPAddressMethod2(HttpServletRequest request){
+		return request.getHeader("X-FORWARDED-FOR");
 	}
 	
 }
