@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.chimeralabs.advertiser.server.formDTO.AdGroupPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.AdPerformanceDataDTO;
+import co.chimeralabs.advertiser.server.formDTO.CM_DataRowActionDTO;
 import co.chimeralabs.advertiser.server.formDTO.CampaignPerformanceDataDTO;
 import co.chimeralabs.advertiser.server.formDTO.ImageAdUploadFormDTO;
 import co.chimeralabs.advertiser.server.model.Ad;
