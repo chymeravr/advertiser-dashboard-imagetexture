@@ -166,7 +166,7 @@ public class AdvertiserDashboard {
 				}
 			}
 		}
-		List<AdPerformanceDataDTO> dtos = AdPerformanceDataDTO.getListOfDTOs(ads);
+		List<AdPerformanceDataDTO> dtos = AdPerformanceDataDTO.getListOfDTOs(ads, adService);
 		return dtos;
 	}
 	

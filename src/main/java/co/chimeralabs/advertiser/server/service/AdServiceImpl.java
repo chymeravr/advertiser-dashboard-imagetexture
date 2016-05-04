@@ -43,20 +43,16 @@ public class AdServiceImpl implements AdService{
 		AdGroup adGroup = adGroupService.getAdGroup(adGroupId);
 		ad.setAdGroup(adGroup);
 		ad = adRepository.save(ad);
-		if(textureImageService.loadFile(imageFile, ad.getAdId().toString())){//load successful
-			if(textureImageService.checkImageFormat(imageFile, new TextureImageFormat(ad.getResolutionWidth(), ad.getResolutionHeight()))){
-				String resourceIdentifier = textureImageService.saveImage();
-				ad.setAdResourceIdentifier(resourceIdentifier);
-				ad.setAdResourceFormat(textureImageService.getImageFormat());
-			}
+		String resourceIdentifier = textureImageService.saveImage(imageFile, ad.getAdId().toString());
+		if(resourceIdentifier != null){
+			ad.setAdResourceIdentifier(resourceIdentifier);
 		}
 		return adRepository.save(ad);
 	}
 
 	@Override
-	public String getAdUrl(Long adId) {
-		Ad ad = adRepository.findOne(adId);
-		return textureImageService.getImagePath(ad.getAdResourceIdentifier());
+	public String getAdUrl(Ad ad) {
+		return textureImageService.getImageUrl(ad.getAdResourceIdentifier());
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.chimeralabs.advertiser.server.model.Ad;
+import co.chimeralabs.advertiser.server.service.AdService;
 import co.chimeralabs.advertiser.server.util.RetrieveResources;
 
 public class AdPerformanceDataDTO {
@@ -25,23 +26,20 @@ public class AdPerformanceDataDTO {
 		
 	}
 	
-	public AdPerformanceDataDTO(Ad ad){
+	public AdPerformanceDataDTO(Ad ad, AdService adService){
 		this.adId = ad.getAdId();
 		this.adName = ad.getName();
-		InputStream inputStream = getClass().getResourceAsStream("/machine/MachineConstants.xml");
-		String baseDir = RetrieveResources.retrieveResourcesAppConatants(inputStream, "imageresourceurl").get(0);
-		String imageUrl = baseDir + File.separator + ad.getAdResourceIdentifier() + "." + ad.getAdResourceFormat();
-		this.adImageUrl = imageUrl;
+		this.adImageUrl = adService.getAdUrl(ad);
 		this.agid = ad.getAdGroup().getAdGroupId();
 		this.adGroupName = ad.getAdGroup().getName();
 		this.cid = ad.getAdGroup().getCampaign().getCampaignId();
 		this.campaignName = ad.getAdGroup().getCampaign().getName();
 	}
 	
-	public static List<AdPerformanceDataDTO> getListOfDTOs(List<Ad> ads){
+	public static List<AdPerformanceDataDTO> getListOfDTOs(List<Ad> ads, AdService adService){
 		List<AdPerformanceDataDTO> dtos = new ArrayList<AdPerformanceDataDTO>(ads.size());
 		for (Ad ad : ads) {
-			AdPerformanceDataDTO dto = new AdPerformanceDataDTO(ad);
+			AdPerformanceDataDTO dto = new AdPerformanceDataDTO(ad, adService);
 			dto.setInteraction(0.0);
 			dto.setInteractionRate(0.0);
 			dto.setAvgCost(0.0);
