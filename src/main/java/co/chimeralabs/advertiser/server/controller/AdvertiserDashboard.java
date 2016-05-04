@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -292,6 +294,18 @@ public class AdvertiserDashboard {
 			}
 		}
 		return returnMessage;
+	}
+	
+	@RequestMapping(value="/getipaddress", method=RequestMethod.GET)
+	@ResponseBody
+	public String getIPAddress(HttpServletRequest request){
+		return request.getRemoteAddr();
+	}
+	
+	@RequestMapping(value="/getipaddress2", method=RequestMethod.GET)
+	@ResponseBody
+	public String getIPAddressMethod2(HttpServletRequest request){
+		return request.getHeader("X-FORWARDED-FOR");
 	}
 	
 }
