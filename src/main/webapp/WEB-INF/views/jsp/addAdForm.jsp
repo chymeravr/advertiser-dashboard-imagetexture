@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/views/includes/taglibs.jsp"%>
 <c:url var="post_url" value="/dashboard/cm/addAd" />
 <c:url var="static_url" value="/static" />
+<c:url var="dashboard_home_url" value="/dashboard/cm/ui/_ac/gcmt" />
 
 <tiles:insertDefinition name="advertiser_dashboard">
 	<tiles:putAttribute name="maincontent">
@@ -144,7 +145,7 @@
 					}
 				});
 				$('#cancelButton').click(function(event){
-					window.location.href = "/advertiser/dashboard/cm/ui/_ac/gcmt";
+					window.location.href = "${dashboard_home_url}";
 				});
 				$("#imageuploadinput").change(function(event){
 					var imageInput = this;

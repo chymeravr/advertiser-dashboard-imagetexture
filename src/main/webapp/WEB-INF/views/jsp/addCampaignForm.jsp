@@ -2,6 +2,8 @@
 <%@ include file="/WEB-INF/views/includes/taglibs.jsp"%>
 <c:url var="post_url" value="/dashboard/cm/addCampaign" />
 <c:url var="static_url" value="/static" />
+<c:url var="dashboard_home_url" value="/dashboard/cm/ui/_ac/gcmt" />
+
 <tiles:insertDefinition name="advertiser_dashboard">
 	<tiles:putAttribute name="css">
 		<link rel="stylesheet" href="${static_url}/css/jquery.datetimepicker.css" />
@@ -159,7 +161,7 @@
 				}
 			});
 			$('#cancelButton').click(function(event){
-				window.location.href = "/advertiser/dashboard/cm/ui/_ac/gcmt";
+				window.location.href = "${dashboard_home_url}";
 			});
 			$(document).ready(function(){
 				$("div#wrapper").css("padding-left", "0px");

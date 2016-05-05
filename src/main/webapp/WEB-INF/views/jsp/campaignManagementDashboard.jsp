@@ -1,7 +1,9 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ include file="/WEB-INF/views/includes/taglibs.jsp"%>
 <c:url var="static_url" value="/static" />
-
+<c:url var="actionUrl" value="/dashboard/cm/ui/_ac" />
+<c:url var="dataUrl" value="/dashboard/cm/data/_ac" />
+<c:url var="rowActionUrl" value="/dashboard/cm/rowaction" />
 <tiles:insertDefinition name="advertiser_dashboard">
 	<tiles:putAttribute name="sidebar">
 		<div id="sidebar-wrapper">
@@ -73,8 +75,6 @@ ul.sidebar-sub-nav {
 			var selectedAdGroupId;
 			var wrapperPadding = $("div#wrapper").css("padding-left");
 			var advertiserId = "3234";
-			var actionUrl = "/advertiser/dashboard/cm/ui/_ac";
-			var dataUrl = "/advertiser/dashboard/cm/data/_ac";
 
 			function campaignNameFormatter(value, row) {
 				return "<a class='campaign' href='#' id='" + row.cid + "'>"
@@ -91,7 +91,7 @@ ul.sidebar-sub-nav {
 			}
 			function getAndDisplayData() {
 				if (topbarState === "campaign") {
-					var url = dataUrl + "/gcd";
+					var url = "${dataUrl}" + "/gcd";
 					$('#dataTable').bootstrapTable('destroy').bootstrapTable({
 						method : 'get',
 						url : url,
@@ -143,7 +143,7 @@ ul.sidebar-sub-nav {
 						} ]
 					});
 				} else if (topbarState === "adgroup") {
-					var url = dataUrl + "/gagd";
+					var url = "${dataUrl}" + "/gagd";
 					if (sidebarState === "adgroup")
 						url += "?cid=" + selectedCampaignId;
 					var showCampaign = false;
@@ -211,7 +211,7 @@ ul.sidebar-sub-nav {
 					});
 
 				} else if (topbarState === "ad") {
-					var url = dataUrl + "/gaad";
+					var url = "${dataUrl}" + "/gaad";
 					if (sidebarState === "ad")
 						url += "?agid=" + selectedAdGroupId;
 					else if (sidebarState === "adgroup")
@@ -294,7 +294,7 @@ ul.sidebar-sub-nav {
 			function rowAction(action){
 				var ids = [];
 				var target = "";
-				var url = "/advertiser/dashboard/cm" + "/rowaction";//perform data row action
+				var url = "${rowActionUrl}";//perform data row action
 				if(topbarState==="campaign"){/*determine the target for the action*/
 					$("table#dataTable tbody input:checked").each(function(){
 						ids.push($(this).parent().parent().find(".campaign").attr("id"));
@@ -353,8 +353,9 @@ ul.sidebar-sub-nav {
 								
 							}*/
 							if (topbarState === "campaign") {
-								var url = actionUrl + "/gacf";
-								window.location.href = url;
+								var url = "${actionUrl}" + "/gacf";
+								//window.location.href = url;
+								$(location).attr('href', url);
 								/*$.ajax({
 									url: url,
 									success: success,
@@ -362,12 +363,12 @@ ul.sidebar-sub-nav {
 									method: "GET"
 								});*/
 							} else if (topbarState === "adgroup") {
-								var url = actionUrl + "/gagf";
+								var url = "${actionUrl}" + "/gagf";
 								if (sidebarState === "adgroup")
 									url += "?cid=" + selectedCampaignId;
 								window.location.href = url;
 							} else if (topbarState === "ad") {
-								var url = actionUrl + "/gadf";
+								var url = "${actionUrl}" + "/gadf";
 								if (sidebarState === "ad")
 									url += "?agid=" + selectedAdGroupId;
 								else if (sidebarState === "adgroup")
