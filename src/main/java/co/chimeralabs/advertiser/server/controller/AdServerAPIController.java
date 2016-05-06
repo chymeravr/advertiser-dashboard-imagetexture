@@ -24,6 +24,7 @@ import co.chimeralabs.advertiser.server.apiDTO.ImageTextureAdDTO;
 import co.chimeralabs.advertiser.server.apiDTO.ImageTextureAdsDTO;
 import co.chimeralabs.advertiser.server.model.Ad;
 import co.chimeralabs.advertiser.server.service.AdService;
+import co.chimeralabs.advertiser.server.service.CloudStorageService;
 
 @RestController
 public class AdServerAPIController {
@@ -31,6 +32,8 @@ public class AdServerAPIController {
 	
 	@Autowired
 	AdService adService;
+	@Autowired
+	CloudStorageService cloudStorageService;
 	
 	@RequestMapping(value={"/publisher/api/loadad"}, method=RequestMethod.GET, headers="Accept=application/json")
 	public AdResourceData getAdMetadata(){
@@ -47,7 +50,7 @@ public class AdServerAPIController {
 		List<Ad> ads = adService.getAds();
 		List<ImageTextureAdDTO> adDTOs = new ArrayList<ImageTextureAdDTO>(ads.size());
 		for (Ad ad : ads) {
-			adDTOs.add(new ImageTextureAdDTO(ad));
+			adDTOs.add(new ImageTextureAdDTO(ad, cloudStorageService));
 		}
 		ImageTextureAdsDTO adsDTO = new ImageTextureAdsDTO();
 		adsDTO.setAds(adDTOs);

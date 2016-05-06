@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<image>
-		<textureimageurl>webapps/adnetwork/adresources/textureimages</textureimageurl>
-		<imageresourceurl>http://localhost:8080/adnetwork/adresources/textureimages</imageresourceurl>
-	</image>
 	<cloudstoragedetails>
 		<azure>
 			<azurestoragebaseurl>https://storagedeveloperchimera.blob.core.windows.net</azurestoragebaseurl>

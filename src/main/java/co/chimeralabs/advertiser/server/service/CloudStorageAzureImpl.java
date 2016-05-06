@@ -26,7 +26,7 @@ public class CloudStorageAzureImpl implements CloudStorageService{
 		inputStream = getClass().getResourceAsStream("/machine/MachineConstants.xml");
 		String containerName = RetrieveResources.retrieveResourcesAppConatants(inputStream, "azureimagetextureadimagecontainer").get(0);
 		
-		String url = baseUrl + File.separator + containerName + File.separator + resourceIdentifier;
+		String url = baseUrl + "/" + containerName + "/" + resourceIdentifier;
 		return url;
 	}
 	

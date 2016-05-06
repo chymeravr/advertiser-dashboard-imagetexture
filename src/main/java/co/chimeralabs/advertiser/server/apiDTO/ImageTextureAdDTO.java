@@ -1,12 +1,12 @@
 package co.chimeralabs.advertiser.server.apiDTO;
 
 import co.chimeralabs.advertiser.server.model.Ad;
+import co.chimeralabs.advertiser.server.service.CloudStorageService;
 
 public class ImageTextureAdDTO {
 	private String advertiserId;
 	private String adId;
-	private String adResourceIdentifier;
-	private String adResourceFormat;
+	private String adResourceUrl;
 	private String errorMsg = "";
 	
 	public ImageTextureAdDTO(){
@@ -29,19 +29,10 @@ public class ImageTextureAdDTO {
 		this.adId = adId;
 	}
 
-	public ImageTextureAdDTO(Ad ad){
-		this.adResourceIdentifier = ad.getAdResourceIdentifier();
-		this.adResourceFormat = ad.getAdResourceFormat();
+	public ImageTextureAdDTO(Ad ad, CloudStorageService cloudStorageService){
+		this.adResourceUrl = cloudStorageService.getImageTextureAdImageUrl(ad.getAdResourceIdentifier());
 		this.adId = ad.getAdId().toString();
 		this.advertiserId = ad.getAdGroup().getCampaign().getAdvertiser().getAdvertiserId().toString();
-	}
-
-	public String getAdResourceIdentifier() {
-		return adResourceIdentifier;
-	}
-
-	public void setAdResourceIdentifier(String adResourceIdentifier) {
-		this.adResourceIdentifier = adResourceIdentifier;
 	}
 
 	public String getErrorMsg() {
@@ -52,12 +43,12 @@ public class ImageTextureAdDTO {
 		this.errorMsg = errorMsg;
 	}
 
-	public String getAdResourceFormat() {
-		return adResourceFormat;
+	public String getAdResourceUrl() {
+		return adResourceUrl;
 	}
 
-	public void setAdResourceFormat(String adResourceFormat) {
-		this.adResourceFormat = adResourceFormat;
+	public void setAdResourceUrl(String adResourceUrl) {
+		this.adResourceUrl = adResourceUrl;
 	}
 	
 }
