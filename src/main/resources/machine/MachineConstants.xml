@@ -2,7 +2,7 @@
 <root>
 	<cloudstoragedetails>
 		<azure>
-			<azurestoragebaseurl>https://storagedeveloperchimera.blob.core.windows.net</azurestoragebaseurl>
+			<azurestoragebaseurl>http://storagedeveloperchimera.blob.core.windows.net</azurestoragebaseurl>
 			<azurestorageconnectionstring>DefaultEndpointsProtocol=http;AccountName=storagedeveloperchimera;AccountKey=uaSAUFloIsQSZMyJDiBGn65AAgyIuY9+DlFD6p2LtiYmD4ZCp2a0HDyupB0Ebff7kWMyUSQOZktRZKIFlIgnQQ==</azurestorageconnectionstring>
 			<azureimagetextureadimagecontainer>image-texture-ad-images</azureimagetextureadimagecontainer>
 		</azure>
