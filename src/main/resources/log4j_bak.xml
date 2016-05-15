@@ -23,8 +23,13 @@
 		<appender-ref ref="default.file" />
 	</appender>
 	
+<!-- 	<appender name="flume" class="org.apache.flume.clients.log4jappender.Log4jAppender"> -->
+<!-- 		<param name="Hostname" value="localhost" /> -->
+<!-- 		<param name="Port" value="41414" /> -->
+<!-- 	</appender> -->
+	
 	<root>
-		<priority value="info" />
-		<appender-ref ref="default.async" />
+		<priority value="debug" />
+		<appender-ref ref="flume" />
 	</root>
 </log4j:configuration>
