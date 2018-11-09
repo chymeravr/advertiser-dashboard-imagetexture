@@ -1,6 +1,6 @@
 # Advertiser Dashboard For Image Texture Ads
 ## Product Description
-Advertiser dashboard lets advertisers, aiming to do VR Image Texture Ads, manage ads and budgets. It contains following modules:-
+Advertiser dashboard lets advertisers, aiming to do VR Image Texture Ads, manage ads and budgets. It contains following modules
 * Registrtaion and login
 * Management of ads using campaigns, adgroups and ads
 * Bidding, budgeting and scheduling of ads
