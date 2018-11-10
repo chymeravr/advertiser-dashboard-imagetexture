@@ -48,7 +48,7 @@ Get all the ads that are eligible for bidding.
 
 **Permissions required** : None
 
-## Success Response
+### Success Response
 
 **Code** : `200 OK`
 
@@ -64,7 +64,7 @@ Returns a list of ads that are eligible for bidding.
 			{
 				advertiserId:"1234",
 				adId:"2343223",
-				adResourceUrl:"http://storagedeveloperchimera.blob.core.windows.net/image-texture-ad-images/axssie23dssc.jpg",
+				adResourceUrl:"http://xxx.blob.core.windows.net/image-texture-ad-images/axssie23dssc.jpg",
 				errorMsg:""
 			}
 		],
@@ -76,7 +76,7 @@ Returns a list of ads that are eligible for bidding.
 			{
 				advertiserId:"1235",
 				adId:"2343226",
-				adResourceUrl:"http://storagedeveloperchimera.blob.core.windows.net/image-texture-ad-images/axssie23asdfsc.jpg",
+				adResourceUrl:"http://xxx.blob.core.windows.net/image-texture-ad-images/axssie23asdfsc.jpg",
 				errorMsg:""
 			}
 		],
@@ -85,10 +85,6 @@ Returns a list of ads that are eligible for bidding.
 ]
 ```
 
-## Notes
-
-* If the User does not have a `UserInfo` instance when requested then one will
-  be created for them.
 
 ## License
 
